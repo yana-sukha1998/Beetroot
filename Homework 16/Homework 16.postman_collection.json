@@ -1,0 +1,384 @@
+{
+	"info": {
+		"_postman_id": "1d6b19b9-db5c-4d03-a9ff-eb1f13b89330",
+		"name": "Homework 18",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "0"
+	},
+	"item": [
+		{
+			"name": "Create user positive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.value).to.eql(100);\r",
+							"});\r",
+							"pm.variables.get(\"variable_key\");gender\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"bogdan\",\r\n\"age\": \"24\",\r\n\"gender\":\"{{gender}}\",\r\n\"city\": \"{{city}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6/users",
+					"protocol": "https",
+					"host": [
+						"em",
+						"staging",
+						"api",
+						"onereach",
+						"ai"
+					],
+					"path": [
+						"http",
+						"1b3bebb7-e882-4f1e-a74b-ee381bfa69d6",
+						"users"
+					],
+					"query": [
+						{
+							"key": "\"gender\":",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find user with valid ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{User URL}}/users?id=9335a4bd-7ab3-4e34-a7cb-1c51a6d61910",
+					"host": [
+						"{{User URL}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "9335a4bd-7ab3-4e34-a7cb-1c51a6d61910"
+						},
+						{
+							"key": null,
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user with valid name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Your test name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.value).to.eql(100);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"Andrew\",\r\n\"age\": \"22\",\r\n\"gender\":\"{{gender}}\",\r\n\"city\": \"{{city}}\",\r\n\"id\": \"2efcd9a0-0ff7-40e7-89cc-07fc9692ae00\"\r\n\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{User URL}}/users",
+					"host": [
+						"{{User URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete existing  a user by Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{User URL}}/users?id=9335a4bd-7ab3-4e34-a7cb-1c51a6d61910",
+					"host": [
+						"{{User URL}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "9335a4bd-7ab3-4e34-a7cb-1c51a6d61910"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user with invalid name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"taras\",\r\n\"age\": \"22\",\r\n\"gender\":\"{{gender}}\",\r\n\"city\": \"{{city}}\",\r\n\"id\": \"2efcd9a0-0ff7-40e7-89cc-07fc9692ae00\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{User URL}}/users",
+					"host": [
+						"{{User URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find user without ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {\r",
+							"    console.log(response.json());\r",
+							"});\r",
+							"pm.test(\"Status code name has string\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{User URL}}/users?id=2efcd9a0-0ff7-40e7-89cc-07fc9692ae00",
+					"host": [
+						"{{User URL}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "2efcd9a0-0ff7-40e7-89cc-07fc9692ae00"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user with invalid name and gender",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"string_you_want_to_search\");\r",
+							"});\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":\"yana\",\r\n\"age\": \"24\",\r\n\"gender\":\"{{gender}}\",\r\n\"city\": \"Kyiv\",\r\n\"id\": \"2efcd9a0-0ff7-40e7-89cc-07fc9692ae00\"\r\n\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{User URL}}/users",
+					"host": [
+						"{{User URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete  user without Id",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 200ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(200);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{User URL}}/users?id",
+					"host": [
+						"{{User URL}}"
+					],
+					"path": [
+						"users"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "User URL",
+			"value": "https://em.staging.api.onereach.ai/http/1b3bebb7-e882-4f1e-a74b-ee381bfa69d6"
+		},
+		{
+			"key": "id",
+			"value": "2efcd9a0-0ff7-40e7-89cc-07fc9692ae00"
+		},
+		{
+			"key": "gender",
+			"value": "male"
+		}
+	]
+}
